@@ -64,8 +64,8 @@ Connections:
   flowfile expiration: 0 sec
   queue prioritizer class: ''
 Remote Processing Groups:
-- name: http://192.168.2.1:9090
-  url: http://192.168.2.1:9090
+- name: Your Nifi Instance
+  url: http://192.168.2.1:9090/nifi
   comment: ''
   timeout: 30 sec
   yield period: 10 sec
