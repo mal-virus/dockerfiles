@@ -1,4 +1,4 @@
-FROM openjdk
+FROM wiii/arm-java
 LABEL maintainer="Mal Thirus <malcolm.thirus@gmail.com>"
 
 ARG MINIFI_VERSION=0.1.0
