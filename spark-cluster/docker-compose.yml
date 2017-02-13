@@ -45,8 +45,6 @@ services:
           - 7015
           - 7016
           - 8881
-        ports:
-          - 8081:8081
         volumes:
           - ./.conf/spark-worker:/conf
           - ./.data:/tmp/data
