@@ -1,5 +1,6 @@
+MiNiFi Config Version: 2
 Flow Controller:
-  name: Bluedump template
+  name: minifi
   comment: ''
 Core Properties:
   flow controller graceful shutdown period: 10 sec
@@ -40,38 +41,47 @@ Security Properties:
     algorithm: PBEWITHMD5AND256BITAES-CBC-OPENSSL
     provider: BC
 Processors:
-- name: TailFile
+- id: 015b1000-e24d-1528-0000-000000000000
+  name: TailFile
   class: org.apache.nifi.processors.standard.TailFile
   max concurrent tasks: 1
   scheduling strategy: TIMER_DRIVEN
-  scheduling period: 60 sec
+  scheduling period: 0 sec
   penalization period: 30 sec
   yield period: 1 sec
   run duration nanos: 0
   auto-terminated relationships list: []
   Properties:
     File Location: Local
-    File to Tail: /var/log/bluedump/bluetooth.log
+    File to Tail: /opt/nifi/listeners/exp.txt
     Initial Start Position: Beginning of File
-    Rolling Filename Pattern: bluetooth*
+    Rolling Filename Pattern:
+Process Groups: []
+Input Ports: []
+Output Ports: []
+Funnels: []
 Connections:
-- name: TailFile/success/8daae9f3-0158-1000-2e4b-b7d70cf2897d
-  source name: TailFile
-  source relationship name: success
-  destination name: 8daae9f3-0158-1000-2e4b-b7d70cf2897d
+- id: 015b1001-e24d-1528-0000-000000000000
+  name: TailFile/success/015b100b-2586-1652-8c14-2aa4b5606797
+  source id: 015b1000-e24d-1528-0000-000000000000
+  source relationship names:
+  - success
+  destination id: 015b100b-2586-1652-8c14-2aa4b5606797
   max work queue size: 10000
   max work queue data size: 1 GB
   flowfile expiration: 0 sec
   queue prioritizer class: ''
-Remote Processing Groups:
-- name: Your Nifi Instance
-  url: http://192.168.2.1:9090/nifi
+Remote Process Groups:
+- id: 015b100e-2586-1652-0000-000000000000
+  name: ''
+  url: http://192.168.1.27:8080/nifi
   comment: ''
   timeout: 30 sec
   yield period: 10 sec
+  transport protocol: RAW
   Input Ports:
-  - id: 8daae9f3-0158-1000-2e4b-b7d70cf2897d
-    name: RawFlows
+  - id: 015b100b-2586-1652-8c14-2aa4b5606797
+    name: Minifi Json
     comment: ''
     max concurrent tasks: 1
     use compression: false

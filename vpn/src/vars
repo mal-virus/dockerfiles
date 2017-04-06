@@ -1,0 +1,22 @@
+export EASY_RSA="/usr/share/easy-rsa"
+export OPENSSL="openssl"
+export PKCD11TOOL="pkcs11-tool"
+export GREP="grep"
+export KEY_CONFIG=`$EASY_RSA/whichopensslcnf $EASY_RSA`
+export KEY_DIR="$EASY_RSA/keys"
+echo NOTE: If you run ./clean-all, I will be doing a rm -rf on $KEY_DIR
+export PKCS11_MODULE_PATH="dummy"
+export PKCS11_PIN="dummy"
+
+# Potential changeable vars
+export KEY_SIZE=2048
+export CA_EXPIRE=3650
+export KEY_EXPIRE=3650
+
+export KEY_COUNTRY=""
+export KEY_PROVINCE=""
+export KEY_CITY=""
+export KEY_ORG=""
+export KEY_EMAIL=""
+export KEY_OU=""
+export KEY_NAME=""

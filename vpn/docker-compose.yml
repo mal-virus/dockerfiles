@@ -1,0 +1,19 @@
+#####!!!!EXPERIMENTAL!!!######
+#Pretty sure this didn't work because docker-compose does not connect you to terminal automatically
+#BUT these ARE the rules to get the whole thing started
+version: '2'
+services:
+  openvpn:
+    stdin_open: true
+    tty: true
+    cap_add:
+     - NET_ADMIN
+    image:  malthirus/vpn
+    container_name: pivpn
+    environment:
+     - TERM=xterm
+    ports:
+     - "1194:1194/udp"
+    volumes:
+     - ./openvpn-data/conf:/etc/openvpn
+     - ./pivpn:/opt/pivpn

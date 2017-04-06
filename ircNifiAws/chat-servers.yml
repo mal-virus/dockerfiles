@@ -1,0 +1,39 @@
+version: '2'
+services:
+  chat1:
+    container_name: broman_chat
+    build: ./listener
+    environment:
+      - IRC_NICK=${IRC_NICK}
+      - IRC_PASS=${IRC_PASS}
+      - IRC_CHAN=#professorbroman
+      - FILE_NAME=broman.txt
+    network_mode: bridge
+    volumes:
+      - .data/listeners:/src/data
+    external_links:
+      - nifi-solo-node:nifi-solo
+  chat2:
+    container_name: moonmoon_chat
+    extends: chat1
+    environment:
+      - IRC_CHAN=#moonmoon_ow
+      - FILE_NAME=moon2.txt
+  chat3:
+    container_name: exp_chat
+    extends: chat1
+    environment:
+      - IRC_CHAN=#excessiveprofanity
+      - FILE_NAME=exp.txt
+  chat4:
+    container_name: tru_chat
+    extends: chat1
+    environment:
+      - IRC_CHAN=#tru3ta1ent
+      - FILE_NAME=tru.txt
+  chat5:
+    container_name: man_chat
+    extends: chat1
+    environment:
+      - IRC_CHAN=#manvsgame
+      - FILE_NAME=man.txt

@@ -1,0 +1,15 @@
+version: '2'
+services:
+  nifi-solo:
+    container_name: nifi-solo-node
+    build: ./nifi
+    ports:
+      - "8080-8082:8080-8082"
+    volumes:
+      - .data/database_repository:/opt/nifi/database_repository
+      - .data/flowfile_repository:/opt/nifi/flowfile_repository
+      - .data/content_repository:/opt/nifi/content_repository
+      - .data/provenance_repository:/opt/nifi/provenance_repository
+      - .data/logs:/opt/nifi/logs
+      - .data/listeners:/opt/nifi/listeners
+    network_mode: bridge
